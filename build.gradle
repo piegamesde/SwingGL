@@ -15,19 +15,25 @@ repositories {
     }
 }
 
-dependencies {
-    compile 'org.lwjgl:lwjgl:3.1.2'
-    compile 'org.lwjgl:lwjgl-glfw:3.1.2'
-    compile 'org.lwjgl:lwjgl-jemalloc:3.1.2'
-    compile 'org.lwjgl:lwjgl-opengl:3.1.2'
-    runtime 'org.lwjgl:lwjgl:3.1.2'
-    runtime 'org.lwjgl:lwjgl-glfw:3.1.2'
-    runtime 'org.lwjgl:lwjgl-jemalloc:3.1.2'
-    runtime 'org.lwjgl:lwjgl-opengl:3.1.2'
-}
-
 group = 'piegames'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
 
 mainClassName = 'de.piegames.swinggl.demo.PanelTestActive'
+
+project.ext.lwjglVersion = "3.2.3"
+project.ext.lwjglNatives = "natives-linux"
+
+
+dependencies {
+	implementation platform("org.lwjgl:lwjgl-bom:$lwjglVersion")
+
+	implementation "org.lwjgl:lwjgl"
+	implementation "org.lwjgl:lwjgl-glfw"
+	implementation "org.lwjgl:lwjgl-jemalloc"
+	implementation "org.lwjgl:lwjgl-opengl"
+	runtimeOnly "org.lwjgl:lwjgl::$lwjglNatives"
+	runtimeOnly "org.lwjgl:lwjgl-glfw::$lwjglNatives"
+	runtimeOnly "org.lwjgl:lwjgl-jemalloc::$lwjglNatives"
+	runtimeOnly "org.lwjgl:lwjgl-opengl::$lwjglNatives"
+}
